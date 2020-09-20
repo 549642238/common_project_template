@@ -22,13 +22,20 @@
 $ mkdir build
 $ cd build
 $ cmake ..
-$ make
+$ make -j32
 ```
 + 动态编译
 ```
 $ mkdir build
 $ cd build
 $ cmake -D BUILD_SHARED_LIBS=ON ..
-$ make
+$ make -j32
+```
++ 编译测试库可执行文件
+```
+$ mkdir build
+$ cd build
+$ cmake -D GENERATE_TEST_FILE=ON ..
+$ make -j32
 ```
 **建议每次cmake前rm build/\* -rf**
