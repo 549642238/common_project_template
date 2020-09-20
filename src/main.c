@@ -6,6 +6,7 @@
 #include <getopt.h>
 
 #include "common.h"
+//#include "bitmap.h"
 
 int control_msg_level = 0;
 static char *target = NULL;
