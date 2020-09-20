@@ -6,6 +6,8 @@ SET(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 ADD_LIBRARY(bitmap bitmap.c)
 
 # Test program
-SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
-ADD_EXECUTABLE(test_bitmap test_bitmap.c)
-TARGET_LINK_LIBRARIES(test_bitmap bitmap)
+if (GENERATE_TEST_FILE)
+	SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+	ADD_EXECUTABLE(test_bitmap test_bitmap.c)
+	TARGET_LINK_LIBRARIES(test_bitmap bitmap)
+endif (GENERATE_TEST_FILE)
