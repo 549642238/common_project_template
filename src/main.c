@@ -24,8 +24,8 @@ static char *target = NULL;
 		"\t" #program_name " -l 2 TARGET\n\n"			\
 		"Options:\n"						\
 		"-l, --log-level=LEVEL		Display printing "	\
-		"message according to given LEVEL (0 - verbose, "	\
-		"1 - warning, 2 - error)\n"				\
+		"message according to given LEVEL (0 - debug, "		\
+		"1 - verbose, 2 - notice)\n"				\
 		"-V, --version			Display version "	\
 		"information\n"						\
 		"-h, --help			Show how to use\n\n"	\
@@ -53,8 +53,8 @@ static int get_options(const int argc, char **argv)
 				control_msg_level = strtol(optarg, &endp, 0);
 				if (*endp != '\0' || endp == optarg ||
 					control_msg_level < 0 ||
-					control_msg_level > 2) {
-					printf("bad debugging level '%s'\n", optarg);
+					control_msg_level > 3) {
+					WARN("bad debugging level '%s'", optarg);
 					return -1;
 				}
 				break;
@@ -73,7 +73,7 @@ static int get_options(const int argc, char **argv)
 		target = strdup(argv[optind]);
 
 	if (!target) {
-		MSG(2, "No target found!\n");
+		WARN("No target found!");
 		return -1;
 	}
 

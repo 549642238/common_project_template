@@ -7,6 +7,7 @@ OPTION(GENERATE_TEST_FILE "Generate libries test files" OFF)
 
 # Libraries building related
 ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/lib/bitmap)
+ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/lib/min_heap)
 
 # Main program building related
 ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/src)
