@@ -9,8 +9,12 @@ if (NOT BUILD_SHARED_LIBS)
 endif (NOT BUILD_SHARED_LIBS)
 
 # Libraries building related
-ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/lib/bitmap)
-ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/lib/min_heap)
+file(GLOB children ${PROJECT_SOURCE_DIR}/lib/*)
+FOREACH (child ${children})
+	IF (IS_DIRECTORY ${child})
+		ADD_SUBDIRECTORY(${child})
+	ENDIF ()
+ENDFOREACH ()
 
 # Main program building related
 ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/src)
