@@ -4,6 +4,9 @@ PROJECT(MY_PROJ)
 SET(CMAKE_C_COMPILER "gcc")
 
 OPTION(GENERATE_TEST_FILE "Generate libries test files" OFF)
+if (NOT BUILD_SHARED_LIBS)
+	set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static")
+endif (NOT BUILD_SHARED_LIBS)
 
 # Libraries building related
 ADD_SUBDIRECTORY(${PROJECT_SOURCE_DIR}/lib/bitmap)
