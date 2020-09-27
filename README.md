@@ -9,8 +9,8 @@
 ├── CMakeLists.txt
 ├── include
 │   └── common.h
-├── lib （库）
-│   └── bitmap
+├── lib （数据结构/通用方法库）
+│   └── 请不要在lib下创建非库文件夹
 └── src （源文件）
     ├── CMakeLists.txt
     └── main.c
