@@ -19,4 +19,4 @@ int test_bit(const unsigned long *addr, unsigned long nr);
 unsigned long *bitmap_alloc(unsigned long nbits);
 void bitmap_free(unsigned long *addr);
 
-#endif
+#endif /* __BITMAP_H__ */

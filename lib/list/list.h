@@ -153,4 +153,4 @@ int list_empty(const struct list_head *head);
 	     &pos->member != (head); 					\
 	     pos = n, n = list_prev_entry(n, member))
 
-#endif
+#endif /* __LIST_H__ */

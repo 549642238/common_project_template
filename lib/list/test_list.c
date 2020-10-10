@@ -13,7 +13,7 @@ struct element {
 	struct list_head list;
 };
 
-int test_list_1(void)
+static int test_list_1(void)
 {
 	int i;
 	LIST_HEAD(elements);
@@ -43,7 +43,7 @@ int test_list_1(void)
 	return 0;
 }
 
-int test_list_2(void)
+static int test_list_2(void)
 {
 	int i, err = 0;
 	struct element *pos, *tmp_e;

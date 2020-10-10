@@ -36,4 +36,4 @@ void min_heap_pop_push(struct min_heap *heap,
 void min_heap_push(struct min_heap *heap, const void *element,
 		const struct min_heap_callbacks *func);
 
-#endif
+#endif /* __MIN_HEAP_H__ */

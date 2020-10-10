@@ -65,4 +65,4 @@ extern int control_msg_level;
 	const typeof( ((type *)0)->member ) *__mptr = (ptr);		\
 	(type *)( (char *)__mptr - offsetof(type,member) );})
 
-#endif
+#endif /* __COMMON_H__ */
