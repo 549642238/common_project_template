@@ -38,4 +38,5 @@ $ cd build
 $ cmake -D GENERATE_TEST_FILE=ON ..
 $ make -j32
 ```
-**建议每次cmake前rm build/\* -rf**
+**1. 建议每次cmake前rm build/\* -rf**  
+**2. 所有库中的数据结构都是非线程安全的，在并发场景下用户需要自行处理竞争**  
