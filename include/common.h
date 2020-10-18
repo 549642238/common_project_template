@@ -48,7 +48,7 @@ extern int control_msg_level;
 #define WARN_ON(condition, format, ...)					\
 	do {								\
 		if ((condition)) {					\
-			WARN(##__VA_ARGS__);				\
+			WARN(format, ##__VA_ARGS__);				\
 		}							\
 	} while(0)
 
