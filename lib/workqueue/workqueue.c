@@ -19,7 +19,7 @@ static void *worker_thread(void *wq);
  * Handle two thing:
  * 1. Process one work which is waiting in workqueue, then delete the finished
  *    work from workqueue.
- * 2. Create more workers when there are too many workers, the additional
+ * 2. Create more workers when there are too many works, the additional
  *    creating workers will be released in their threads.
  */
 static inline void process_one_work(struct work_struct *work,
@@ -36,7 +36,7 @@ static inline void process_one_work(struct work_struct *work,
 	 * means work_cnt exceeds nr_worker).
 	 */
 	if (wq->alive && !list_empty(&wq->work_list) && !wq->nr_idle_worker &&
-					wq->nr_worker < wq->nr_max_worker) {
+					wq->ref_count < wq->nr_max_worker) {
 		pthread_t tid;
 
 		wq->ref_count++;
@@ -91,7 +91,7 @@ wake_up:
 
 /**
  * Insert a work into workqueue.
- * Note: never insert one work twice into workqueue.
+ * Note: never insert the same work twice into workqueue.
  * Return: 0 for success, others for error.
  */
 int queue_work(struct workqueue* wq, struct work_struct *work)
@@ -123,7 +123,7 @@ void flush_work(struct work_struct *work)
 
 static inline void wait_worker_exit(struct workqueue* wq)
 {
-	// Make sure there is not worker thread alive
+	// Make sure there is no worker threads alive
 	while (wq->ref_count)
 		pthread_cond_signal(&wq->cond);
 
@@ -142,7 +142,7 @@ int init_workqueue(struct workqueue* wq, const char *name)
 	pthread_t tid;
 	int nr_worker, i;
 
-	if (strlen(name) > WORKQUEUE_NAME_LEN) {
+	if (strlen(name) + 1 > WORKQUEUE_NAME_LEN) {
 		WARN("Workqueue name is too long (max %d)", WORKQUEUE_NAME_LEN);
 		return -1;
 	}
