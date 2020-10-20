@@ -42,7 +42,7 @@ $ make -j32
 ```
 $ mkdir build
 $ cd build
-$ cmake -D CMAKE_BUILD_TYPE=DEBUG ..
+$ cmake -D CMAKE_BUILD_TYPE=DEBUG ..  # 默认DEBUG
 $ make -j32
 ```
 **1. 建议每次cmake前rm build/\* -rf**  
