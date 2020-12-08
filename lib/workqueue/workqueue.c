@@ -91,12 +91,18 @@ wake_up:
 
 /**
  * Insert a work into workqueue.
- * Note: never insert the same work twice into workqueue.
  * Return: 0 for success, others for error.
  */
 int queue_work(struct workqueue* wq, struct work_struct *work)
 {
 	pthread_mutex_lock(&wq->lock);
+
+	if (work->wq) {
+		pthread_mutex_unlock(&wq->lock);
+		WARN("The work is already on workqueue");
+		return -1;
+	}
+
 	if (!wq->alive) {
 		pthread_mutex_unlock(&wq->lock);
 		WARN("Dead workqueue, cannot insert new work");

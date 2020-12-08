@@ -52,9 +52,33 @@ static int test_workqueue(void)
 	return 0;
 }
 
+static int test_workqueue_2(void)
+{
+	struct workqueue wq;
+	struct element e;
+
+	if (init_workqueue(&wq, WORK_QUEUE_NAME)) {
+		WARN("Init workqueue fail");
+		return -1;
+	}
+
+	e.data = 1000;
+	INIT_WORK(&e.work, work_func);
+	queue_work(&wq, &e.work);
+	queue_work(&wq, &e.work);
+	queue_work(&wq, &e.work);
+	queue_work(&wq, &e.work);
+
+	flush_work(&e.work);
+	destroy_workqueue(&wq);
+
+	return 0;
+}
+
 int main(void)
 {
 	WARN_ON(test_workqueue() == -1, "Test workqueue fail");
+	WARN_ON(test_workqueue_2() == -1, "Test workqueue_2 fail");
 	MSG(1, "workqueue test success\n");
 	return 0;
 }
