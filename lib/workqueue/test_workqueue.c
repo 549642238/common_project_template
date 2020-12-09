@@ -23,7 +23,7 @@ static void work_func(struct work_struct *work)
 	sleep(1);
 }
 
-static int test_workqueue(void)
+static int test_workqueue_1(void)
 {
 	int i;
 	struct workqueue wq;
@@ -77,8 +77,8 @@ static int test_workqueue_2(void)
 
 int main(void)
 {
-	WARN_ON(test_workqueue() == -1, "Test workqueue fail");
-	WARN_ON(test_workqueue_2() == -1, "Test workqueue_2 fail");
+	WARN_ON(test_workqueue_1() == -1, "Test workqueue 1 fail");
+	WARN_ON(test_workqueue_2() == -1, "Test workqueue 2 fail");
 	MSG(1, "workqueue test success\n");
 	return 0;
 }
