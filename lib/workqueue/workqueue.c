@@ -1,5 +1,5 @@
 /*
- * This is a kernel-simplified implementation for workqueu.
+ * This is a kernel-simplified implementation for workqueue.
  * Users may use it like a threads pool to process works asynchronously.
  */
 #include <stdio.h>
